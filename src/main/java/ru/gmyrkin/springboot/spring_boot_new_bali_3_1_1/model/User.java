@@ -5,6 +5,7 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import java.util.Collection;
+import java.util.Set;
 
 @Entity // связать данной сущности с БД
 @Table(name="users") // название табл в БД
@@ -19,6 +20,24 @@ public class User implements UserDetails {
     private String lastName;
     @Column (name="password")
     private String password;
+    @ManyToMany(fetch = FetchType.EAGER)
+    private Set<Role> roles;
+
+    public Set<Role> getRoles() {
+        return roles;
+    }
+
+    public void setRoles(Set<Role> roles) {
+        this.roles = roles;
+    }
+
+    public User(Set<Role> roles) {
+        this.roles = roles;
+    }
+
+    public User() {
+
+    }
 
     public Long getId() {
         return id;

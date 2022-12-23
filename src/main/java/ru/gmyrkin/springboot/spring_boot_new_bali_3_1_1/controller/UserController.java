@@ -5,6 +5,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import ru.gmyrkin.springboot.spring_boot_new_bali_3_1_1.model.Role;
 import ru.gmyrkin.springboot.spring_boot_new_bali_3_1_1.model.User;
 import ru.gmyrkin.springboot.spring_boot_new_bali_3_1_1.service.UserService;
 
