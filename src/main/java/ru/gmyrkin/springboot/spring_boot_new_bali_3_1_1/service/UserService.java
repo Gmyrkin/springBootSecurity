@@ -10,6 +10,7 @@ import ru.gmyrkin.springboot.spring_boot_new_bali_3_1_1.repository.UserRepositor
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 @Service // данный класс компонент Spring
 public class UserService {
@@ -40,6 +41,25 @@ public class UserService {
       return userRepository.save(user);
 
     }
+
+    public User saveUser(User user, String roles) {
+
+        user.setRoles(getRoles(roles));
+        return userRepository.save(user);
+
+    }
+
+    private Set<Role> getRoles(String roles) {
+        Set<Role> result = new HashSet<>();
+        String[] idRoles =  roles.split(",");
+
+       for(String r : idRoles) {
+           Role role = roleRepository.findById(Long.valueOf(r)).orElseThrow(() -> new UsernameNotFoundException("Role not found"));
+           result.add(role);
+       }
+       return result;
+    }
+
 
     public void deleteById (Long id){
         userRepository.deleteById(id);

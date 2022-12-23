@@ -10,6 +10,7 @@ import ru.gmyrkin.springboot.spring_boot_new_bali_3_1_1.model.User;
 import ru.gmyrkin.springboot.spring_boot_new_bali_3_1_1.service.UserService;
 
 import java.util.List;
+import java.util.Set;
 
 @Controller
 
@@ -54,8 +55,8 @@ public class UserController {
     }
 
     @PostMapping("/user-update")
-    public String updateUser(User user){
-        userService.saveUser(user);
+    public String updateUser(User user, String roles) {
+        userService.saveUser(user, roles);
         return "redirect:/users";
     }
 
