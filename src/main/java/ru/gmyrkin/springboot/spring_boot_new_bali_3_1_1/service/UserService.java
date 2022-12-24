@@ -51,6 +51,7 @@ public class UserService {
 
     private Set<Role> getRoles(String roles) {
         Set<Role> result = new HashSet<>();
+
         String[] idRoles =  roles.split(",");
 
        for(String r : idRoles) {
