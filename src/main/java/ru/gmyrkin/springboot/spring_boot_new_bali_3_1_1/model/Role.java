@@ -1,6 +1,7 @@
 package ru.gmyrkin.springboot.spring_boot_new_bali_3_1_1.model;
 
 import jakarta.persistence.*;
+import org.springframework.security.core.GrantedAuthority;
 
 import java.util.Set;
 
@@ -48,4 +49,5 @@ public class Role {
     public String toString() {
         return "" + name;
     }
+
 }
