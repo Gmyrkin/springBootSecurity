@@ -22,6 +22,7 @@ import ru.gmyrkin.springboot.spring_boot_new_bali_3_1_1.service.MyUserDetailsSer
 @EnableWebSecurity
 //@EnableMethodSecurity
 public class WebSecurityConfig  {
+
     private final MyUserDetailsService userDetailsService;
     private final UserRepository userRepository;
 
@@ -41,24 +42,6 @@ public class WebSecurityConfig  {
 //    }
 
 
-//    @Bean
-//    public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
-//        http
-//                .authorizeHttpRequests((requests) -> requests
-//                        .anyRequest()
-//                        .authenticated()
-//                )
-//                .formLogin((form) -> form
-//                        .loginPage("/login")
-//                        .defaultSuccessUrl("/admin")
-//                        .permitAll()
-//                )
-//                .logout((logout) -> logout.permitAll());
-//
-//        return http.build();
-//    }
-
-
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http.csrf().disable()
@@ -73,7 +56,7 @@ public class WebSecurityConfig  {
                         .loginPage("/login")
                         .successHandler(new MyAuthenticationSuccessHandler())
                         .loginProcessingUrl("/login")
-                        .defaultSuccessUrl("/user")
+ //                       .defaultSuccessUrl("/user/")
                         .permitAll()
                 )
                 .logout((logout) -> logout.permitAll())
@@ -88,6 +71,9 @@ public class WebSecurityConfig  {
     protected void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
         auth.userDetailsService(userDetailsService).passwordEncoder(passwordEncoder());
     }
+
+
+
 
 //    @Autowired
 //    protected void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
