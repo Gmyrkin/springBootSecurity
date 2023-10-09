@@ -1,16 +1,11 @@
 package ru.gmyrkin.springboot.spring_boot_new_bali_3_1_1.service;
 
-import org.springframework.context.annotation.Bean;
-import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
-import ru.gmyrkin.springboot.spring_boot_new_bali_3_1_1.model.Role;
 import ru.gmyrkin.springboot.spring_boot_new_bali_3_1_1.model.User;
 import ru.gmyrkin.springboot.spring_boot_new_bali_3_1_1.repository.RoleRepository;
 import ru.gmyrkin.springboot.spring_boot_new_bali_3_1_1.repository.UserRepository;
 
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 @Service // данный класс компонент Spring
 public class UserService {
