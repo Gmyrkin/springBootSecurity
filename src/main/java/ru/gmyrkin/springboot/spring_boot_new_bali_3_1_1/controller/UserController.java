@@ -2,6 +2,7 @@ package ru.gmyrkin.springboot.spring_boot_new_bali_3_1_1.controller;
 
 
 import jakarta.persistence.Id;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -10,9 +11,11 @@ import org.springframework.web.bind.annotation.*;
 import ru.gmyrkin.springboot.spring_boot_new_bali_3_1_1.model.User;
 import ru.gmyrkin.springboot.spring_boot_new_bali_3_1_1.service.UserService;
 import java.security.Principal;
+import java.util.List;
 
 
 @Controller
+@RequestMapping("/")
 public class UserController {
 
     private final UserService userService;
@@ -21,9 +24,16 @@ public class UserController {
         this.userService = userService;
     }
 
+//    @GetMapping("/user")
+//    public String getUserPage(Model model, Principal principal) {
+//        model.addAttribute("users", userService.findByUsername(principal.getName()));
+//        return "user";
+//    }
+
     @GetMapping("/user")
-    public String getUserPage(ModelMap modelMap, Principal principal) {
-        modelMap.addAttribute("users", userService.loadUserByUsername(principal.getName()));
+    public String userPage(Model model, Principal principal) {
+        User user = userService.findByUsername(principal.getName());
+        model.addAttribute("users", user);
         return "user";
     }
 

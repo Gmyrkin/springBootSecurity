@@ -1,5 +1,6 @@
 package ru.gmyrkin.springboot.spring_boot_new_bali_3_1_1.controller;
 
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -45,7 +46,7 @@ public class AdminController {
 
     @GetMapping("/user-update/{id}")
     public String updateUserForm(@PathVariable("id") Long id, Model model) {
-        User user = userService.findById(id);
+        User user = userService.findById(id).orElseThrow(() -> new UsernameNotFoundException("user is not exists"));;
         model.addAttribute("user",user);
         return "/user-update";
     }

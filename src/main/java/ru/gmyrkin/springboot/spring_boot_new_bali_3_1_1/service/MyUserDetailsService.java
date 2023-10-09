@@ -18,13 +18,21 @@ public class MyUserDetailsService implements UserDetailsService {
         this.userRepository = userRepository;
     }
 
+//    @Override
+//    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+//        User user = userRepository.findByFirstName(username).orElseThrow(
+//                () -> (new UsernameNotFoundException("User not found"))
+//        );
     @Override
-    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        User user = userRepository.findByFirstName(username).orElseThrow(
-                () -> (new UsernameNotFoundException("User not found"))
-        );
+        public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+            User user = userRepository.findByFirstName(username);
+            if (user == null) {
+                throw new UsernameNotFoundException("User not found");
+            }
+
 
         return user;
     }
 }
+
 
