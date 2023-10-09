@@ -21,13 +21,19 @@ public class UserController {
         this.userService = userService;
     }
 
-    @GetMapping("/user/{id}")
-    public String showUser (@PathVariable("id") Long id, Model model) {
-        System.out.println("пришел запрос на пользователя " + id);
-        model.addAttribute("users", userService.findById(id));
-        System.out.println("получил пользователя " + userService);
+    @GetMapping("/user")
+    public String getUserPage(ModelMap modelMap, Principal principal) {
+        modelMap.addAttribute("users", userService.loadUserByUsername(principal.getName()));
         return "user";
     }
+
+//    @GetMapping("/user/{id}")
+//    public String showUser (@PathVariable("id") Long id, Model model) {
+//        System.out.println("пришел запрос на пользователя " + id);
+//        model.addAttribute("users", userService.findById(id));
+//        System.out.println("получил пользователя " + userService);
+//        return "user";
+//    }
 
 //    @GetMapping("/user/{id}")
 //    public String printWelcome(@PathVariable("id") Long id, Model model) {

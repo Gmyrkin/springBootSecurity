@@ -1,8 +1,8 @@
 package ru.gmyrkin.springboot.spring_boot_new_bali_3_1_1.service;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import ru.gmyrkin.springboot.spring_boot_new_bali_3_1_1.model.User;
-import ru.gmyrkin.springboot.spring_boot_new_bali_3_1_1.repository.RoleRepository;
 import ru.gmyrkin.springboot.spring_boot_new_bali_3_1_1.repository.UserRepository;
 
 import java.util.List;
@@ -10,11 +10,10 @@ import java.util.List;
 @Service // данный класс компонент Spring
 public class UserService {
 
-    private final RoleRepository roleRepository;
+    //инициализация (старый способ @Autowired)
     private final UserRepository userRepository;
 
-    public UserService(RoleRepository roleRepository, UserRepository userRepository) {
-        this.roleRepository = roleRepository;
+    public UserService(UserRepository userRepository) {
         this.userRepository = userRepository;
     }
 
@@ -38,4 +37,7 @@ public class UserService {
 
     }
 
+    public Object loadUserByUsername(String username) {
+        return userRepository.findByFirstName(username);
+    }
 }
